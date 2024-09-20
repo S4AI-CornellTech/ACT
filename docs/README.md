@@ -46,6 +46,3 @@ For any further questions please contact <lxh4@cornell.edu> or <ugupta@cornell.e
 | ------------- | :------------- |
 | <img src="imgs/leo.jpg" width=500 align=right> | **Leo Han** (Cornell Tech) is a second-year PhD student at Cornell Tech, advised by Udit Gupta. His research interests are at the intersection of sustainability and computing: both improving the sustainability of computing and using computing for sustainability applications. His current research focuses on providing fair, detailed, and accurate carbon footprint estimates for cloud users.  |
 | <img src="imgs/udit_gupta.jpeg" width=500 align=right> | **Udit Gupta** (Cornell Tech) is an Assistant Professor in Electrical and Computer Engineering at Cornell Tech. His research spans across sustainable computing, computer architecture, systems, and machine learning. Generally, he is interested in discovering and demonstrating new ways to design systems and hardware to improve the performance, efficiency, and environmental sustainability of emerging applications. |
-
-
-<img src="imgs/tech-logo.png" width=500 align=left>
