@@ -38,7 +38,7 @@ If you use `ACT`, please cite us:
 ```
 
 ## Contact us
-For any further questions please contact <ugupta@cornell.edu> or <lxh4@cornell.edu>.
+For any further questions please contact <lxh4@cornell.edu> or <ugupta@cornell.edu> .
 
 ## About us
 
