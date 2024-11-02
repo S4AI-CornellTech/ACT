@@ -71,7 +71,7 @@ ic_yield           = 0.875
 
 # IC Logic node
 IC_Logic = Fab_Logic(gpa = "95",
-                     carbon_intensity = "src_coal",
+                     carbon_intensity = "src_coal", # e.g. location: "loc_taiwan", source: "src_coal"
                      process_node = 28,
                      fab_yield=ic_yield)
 
@@ -91,8 +91,8 @@ SSD   = Fab_SSD(config  = "nand_30nm", fab_yield=ic_yield)
 ##################################
 # Computing the IC footprint
 ##################################
-IC_Logic.set_area(sum(fairphone3_IC_areas)/100.)
-CPU_Logic.set_area(fairphone_cpu_area/100.)
+IC_Logic.set_area(sum(fairphone3_IC_areas)/100.) # area in cm^2
+CPU_Logic.set_area(fairphone_cpu_area/100.) # area in cm^2
 DRAM.set_capacity(fairphone_ram)
 SSD.set_capacity(fairphone_storage)
 
@@ -100,7 +100,7 @@ SSD.set_capacity(fairphone_storage)
 # Computing the packaging footprint
 ##################################
 #Number of packages
-nr = len(fairphone3_ICs) + 1 + 1 + 1 # Fairphone ICs + CPU + DRAM + SSD
+nr = len(fairphone3_IC_areas) + 1 + 1 + 1 # Fairphone ICs + CPU + DRAM + SSD
 packaging_intensity = 150 # gram CO2
 
 PackagingFootprint = nr * packaging_intensity
@@ -121,7 +121,7 @@ cpu = (CPU_Logic.get_carbon() + packaging_intensity) / 1000.
 fairphone_cpu = 1.07
 print("ACT CPU", cpu, "kg CO2 vs. LCA", fairphone_cpu, "kg CO2")
 
-ics = (IC_Logic.get_carbon() + packaging_intensity * len(fairphone3_ICs)) / 1000.
+ics = (IC_Logic.get_carbon() + packaging_intensity * len(fairphone3_IC_areas)) / 1000.
 fairphone_ics = 5.3
 print("ACT ICs", ics, "kg CO2 vs. LCA", fairphone_ics, "kg CO2")
 

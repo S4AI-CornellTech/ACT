@@ -62,9 +62,9 @@ SSD_secondary.set_capacity(dellr740_ssd)
 # number of packages
 # https://www.delltechnologies.com/asset/en-us/products/servers/technical-support/Full_LCA_Dell_R740.pdf
 # page 25
-ssd_main_nr         = 8 + 5 # number of chips within SSD
-ssd_secondary_nr    = 8 + 5 # number of chips within SSD
-dram_nr             = 18 # number of chips within DRAM
+ssd_main_nr         = 13
+ssd_secondary_nr    = 13
+dram_nr             = 19
 cpu_nr              = 2
 packaging_intensity = 150 # gram CO2
 
@@ -77,25 +77,26 @@ total_packaging = SSD_main_packaging +  \
                   SSD_secondary_packaging + \
                   DRAM_packging + \
                   CPU_packaging
-total_packaging = total_packaging / 1000.
+total_packaging = total_packaging / 1000. # kgCO2
 
 ##################################
 # Compute end-to-end carbon footprints
 ##################################
 SSD_main_count = 8 # There are 8x3.84TB SSD's
-SSD_main_co2 = (SSD_main.get_carbon() + \
+SSD_main_co2_per = (SSD_main.get_carbon() + \
                 DRAM_SSD_main.get_carbon() + \
-                SSD_main_packaging) / 1000.
-SSD_main_co2 = SSD_main_co2 * SSD_main_count
+                SSD_main_packaging)
+SSD_main_co2 = SSD_main_co2_per * SSD_main_count / 1000.
 
 SSD_secondary_count = 1 # There are 1x400GB SSD's
-SSD_secondary_co2 = (SSD_secondary.get_carbon() + \
+SSD_secondary_co2_per = (SSD_secondary.get_carbon() + \
                      DRAM_SSD_secondary.get_carbon() +  \
-                     SSD_secondary_packaging) / 1000.
-SSD_secondary_co2 = SSD_secondary_co2 * SSD_secondary_count
+                     SSD_secondary_packaging)
+SSD_secondary_co2 = SSD_secondary_co2_per * SSD_secondary_count / 1000.
 
 DRAM_count = 12 # There are 12 x (32GB+4GB ECC DRAM modules)
-DRAM_co2 = (DRAM.get_carbon() + DRAM_packging) / 1000. * DRAM_count
+DRAM_co2_per = (DRAM.get_carbon() + DRAM_packging)
+DRAM_co2 = DRAM_co2_per * DRAM_count / 1000.
 
 CPU_count = 2
 CPU_co2   = (CPU_Logic.get_carbon() + CPU_packaging) * CPU_count / 1000.

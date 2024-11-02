@@ -15,12 +15,39 @@ from logic_model  import Fab_Logic
 debug = False
 
 # Main Fairphone integrated circuits
-fairphone3_ICs = []
 
 # Main Fairphone integrated circuits' areas in mm^2
 # https://www.fairphone.com/wp-content/uploads/2020/07/Fairphone_3_LCA.pdf
 # Look at page 22 (Table 3-5)
 fairphone3_IC_areas = []
+# IC areas:
+'''
+fairphone3_IC_areas = [0.85,
+         1.2,
+         1.2,
+         35,
+         0.89,
+         0.08,
+         0.25,
+         18,
+         11.6,
+         1.44,
+         12.96,
+         1.61,
+         6.3,
+         26.88,
+         0.77,
+         11.36,
+         7,
+         8.69,
+         11,
+         9.6]
+'''
+
+fairphone_cpu_area = 0 #mm^2
+fairphone_ram      = 0 # GB
+fairphone_storage  = 0 # GB
+ic_yield           = 0
 
 ##################################
 # Estimated process technology node to mimic fairphone LCA process node
@@ -51,7 +78,6 @@ SSD.set_capacity(0)
 ##################################
 # Computing the packaging footprint
 ##################################
-#Number of packages
 packaging_intensity = 0 # gram CO2
 
 print("--------------------------------")
@@ -63,6 +89,6 @@ cpu = (CPU_Logic.get_carbon() + packaging_intensity) / 1000.
 fairphone_cpu = 1.07
 print("ACT CPU", cpu, "kg CO2 vs. LCA", fairphone_cpu, "kg CO2")
 
-ics = (IC_Logic.get_carbon() + packaging_intensity * len(fairphone3_ICs)) / 1000.
+ics = (IC_Logic.get_carbon() + packaging_intensity * len(fairphone3_IC_areas)) / 1000.
 fairphone_ics = 5.3
 print("ACT ICs", ics, "kg CO2 vs. LCA", fairphone_ics, "kg CO2")

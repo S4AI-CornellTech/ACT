@@ -32,7 +32,7 @@ ic_yield           = 0.875
 cpu_area = 6.98 #cm^2
 
 ##############################
-# Estimated process technology node to mimic fairphone LCA process node
+# Estimated process technology node
 ##############################
 CPU_Logic = Fab_Logic()
 
@@ -58,9 +58,9 @@ SSD_secondary.set_capacity(0)
 # Computing the packaging footprint
 ##################################
 # number of packages
-ssd_main_nr         = 12 + 1
-ssd_secondary_nr    = 12 + 1
-dram_nr             = 18 + 1
+ssd_main_nr         = 13
+ssd_secondary_nr    = 13
+dram_nr             = 19
 cpu_nr              = 2
 packaging_intensity = 150 # gram CO2
 
@@ -80,18 +80,20 @@ total_packaging = total_packaging / 1000.
 # Compute end-to-end carbon footprints
 ##################################
 SSD_main_count = 8 # There are 8x3.84TB SSD's
-SSD_main_co2 = 0
-SSD_main_co2 = SSD_main_co2 * SSD_main_count
+SSD_main_co2_per = 0
+SSD_main_co2 = SSD_main_co2_per * SSD_main_count / 1000. # multiply by number of SSDs and convert to kg
 
 SSD_secondary_count = 1 # There are 1x400GB SSD's
-SSD_secondary_co2 = 0
-SSD_secondary_co2 = SSD_secondary_co2 * SSD_secondary_count
+SSD_secondary_co2_per = 0
+SSD_secondary_co2 = SSD_secondary_co2_per * SSD_secondary_count # multiply by number of SSDs and convert to kg
 
 DRAM_count = 12 # There are 12 x (32GB+4GB ECC DRAM modules)
-DRAM_co2 = 0
+DRAM_co2_per = 0
+DRAM_co2 = DRAM_co2_per * DRAM_count / 1000. # multiply by number of DRAMs and convert to kg
 
 CPU_count = 2
-CPU_co2   = 0
+CPU_co2_per = 0
+CPU_co2 = CPU_co2_per * CPU_count / 1000. # multiply by number of CPUs and convert to kg
 
 if debug:
     print("ACT SSD main", SSD_main_co2, "kg CO2")
